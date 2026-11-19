@@ -1,0 +1,198 @@
+{
+ "style": "letter",
+ "series": "The Tazkiyyah Letter",
+ "author": "@thetazkiyyahguide",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "The Du'a for a Heart That Keeps Slipping",
+   "sub": "Swipe for the du'a the Prophet ﷺ would say often, why he feared for hearts like ours, and 3 ways to stay steady.",
+   "by": "A letter from The Tazkiyyah Guide",
+   "art": [
+    {
+     "fig": "hands",
+     "x": 540,
+     "y": 250,
+     "size": 200,
+     "c": "#191919",
+     "a": "#2f5d46"
+    },
+    {
+     "fig": "heart",
+     "x": 540,
+     "y": 1150,
+     "size": 120,
+     "c": "#191919"
+    }
+   ]
+  },
+  {
+   "type": "text",
+   "blocks": [
+    "You had a good Ramadan. Then it faded.",
+    "You left that talk on fire. A week later, nothing.",
+    "You promise yourself Fajr every night.",
+    "Some mornings, you miss it again.",
+    "You start to wonder if you were ever sincere.",
+    "",
+    "If that's you, you're not a fake.",
+    "You're human, and your heart is doing what hearts do.",
+    "Hearts move. It's even in the word.",
+    "Qalb, the Arabic word for heart, comes from a root that means to turn over.",
+    "Even the best of creation ﷺ asked Allah to keep his heart steady.",
+    "He didn't ask once.",
+    "He said it often."
+   ],
+   "art": [
+    {
+     "fig": "heart",
+     "x": 880,
+     "y": 1160,
+     "size": 161,
+     "c": "#191919"
+    },
+    {
+     "fig": "circleScribble",
+     "x": 880,
+     "y": 1160,
+     "size": 264,
+     "a": "#b0532c"
+    }
+   ]
+  },
+  {
+   "type": "text",
+   "blocks": [
+    "Anas said the Prophet ﷺ would often say:",
+    {
+     "quote": {
+      "ar": "يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ",
+      "ref": "Jami' at-Tirmidhi 2140 · Sahih (al-Albani)"
+     }
+    },
+    "\"O Changer of the hearts, strengthen my heart upon Your religion.\"",
+    "Anas asked him: \"Do you fear for us?\"",
+    "He said: \"Yes. Indeed the hearts are between two fingers of Allah's fingers, He changes them as He wills.\"",
+    "",
+    "He feared for the companions.",
+    "So what about us?",
+    "",
+    "Learn the words tonight. It takes two minutes.",
+    "Then say them like you mean it."
+   ],
+   "art": [
+    {
+     "fig": "hands",
+     "x": 880,
+     "y": 1150,
+     "size": 195,
+     "c": "#191919",
+     "a": "#2f5d46"
+    }
+   ]
+  },
+  {
+   "type": "chart",
+   "title": "What steadies the heart, and what shakes it.",
+   "diagram": {
+    "kind": "bars",
+    "h": 820,
+    "axis": 0.62,
+    "max": 2,
+    "rows": [
+     {
+      "label": "This du'a, every day",
+      "note": "Asking the One who turns hearts.",
+      "value": 2,
+      "tag": "Steadies"
+     },
+     {
+      "label": "Sins kept in secret",
+      "note": "They pile up where no one sees.",
+      "value": -1.7,
+      "tag": "Shakes"
+     },
+     {
+      "label": "One deed you never drop",
+      "note": "Small, but it holds you.",
+      "value": 1.6,
+      "tag": "Steadies"
+     },
+     {
+      "label": "Scrolling at midnight",
+      "note": "Your last thoughts go to the feed.",
+      "value": -1.3,
+      "tag": "Shakes"
+     },
+     {
+      "label": "Friends who remind you",
+      "note": "Company you can lean on.",
+      "value": 1.4,
+      "tag": "Steadies"
+     },
+     {
+      "label": "Waiting to feel it",
+      "note": "Motivation comes and goes.",
+      "value": -1.0,
+      "tag": "Shakes"
+     }
+    ]
+   },
+   "after": "You can't control how you'll feel tomorrow. You can control what you keep doing today."
+  },
+  {
+   "type": "text",
+   "blocks": [
+    "## 3 ways to stay steady",
+    "**1.** Make the du'a in sujud: *Ya Muqallib al-qulub, thabbit qalbi 'ala dinik.*",
+    "**2.** Keep one small deed you never drop. The most beloved deed to Allah is the most constant, even if it is small. *(Sahih al-Bukhari 6464)*",
+    "**3.** Add the du'a from the Qur'an: \"Our Lord, let not our hearts deviate after You have guided us.\" *(Qur'an 3:8)*",
+    "",
+    "A slipping heart isn't a lost heart.",
+    "It's a heart that needs this du'a.",
+    "",
+    "Don't wait to feel steady before you make the du'a.",
+    "Make the du'a so that you become steady.",
+    "Start tonight, in your last sujud of 'Isha."
+   ],
+   "art": [
+    {
+     "fig": "sujud",
+     "x": 840,
+     "y": 1170,
+     "size": 218,
+     "c": "#191919",
+     "a": "#2f5d46"
+    },
+    {
+     "fig": "moon",
+     "x": 990,
+     "y": 1080,
+     "size": 103,
+     "c": "#191919",
+     "a": "#d39a22",
+     "b": "#d39a22"
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "kicker": "Save this du'a.",
+   "title": "Say it tonight, and every night after.",
+   "sub": "One sunnah a week, with its source. For hearts that keep trying.",
+   "action": "Follow @thetazkiyyahguide",
+   "url": "Send it to a friend who's been slipping.",
+   "art": [
+    {
+     "fig": "moon",
+     "x": 540,
+     "y": 230,
+     "size": 190,
+     "c": "#f3f0e9",
+     "a": "#d39a22",
+     "b": "#f3f0e9"
+    }
+   ]
+  }
+ ]
+}

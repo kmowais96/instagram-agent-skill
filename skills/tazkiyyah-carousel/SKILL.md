@@ -37,7 +37,7 @@ kit/doodle.js         hand-drawn primitives and ready-made diagrams (rough.js)
 kit/carousel.css      the three styles
 kit/fonts/            Gaegu, Open Sans, Tinos, Inter, Amiri (all OFL)
 kit/scripts/verify.py pulls the exact text and grading of any hadith or ayah
-kit/examples/         one complete spec per style: copy one to start
+kit/examples/         complete specs (two per style): copy one to start
 ```
 
 ## 1. Brief (decide before writing a word)
@@ -99,6 +99,9 @@ Keep a source table for the hand-off (claim, reference, grading, where checked).
 ## 3. Write the copy
 
 Write all slides as text first and check the counts with code, not by eye.
+
+Need a hook? `hooks.md` has 36 tested cover titles (12 per style), slide-2 hooks
+and caption first lines, each with its source or a *find source* flag.
 
 **Cover (80% of the result)**
 - Hook in the title, 5-10 words. Formulas that fit this page:
@@ -188,9 +191,50 @@ Ready-made `kind`s: `roadmap`, `gauge {value, caption}`, `clock {fraction, capti
 For anything else write `{ "kind": "custom", "h": 420, "js": "..." }`. The code
 gets `P` (primitives), `T` (theme colours), `W`, `H`:
 `P.line, P.path, P.curve, P.poly, P.rect, P.circle, P.heart, P.blob, P.dot,
-P.arc, P.wedge, P.arrow, P.text(x, y, str, {c, size, anchor, font}), P.grid,
+P.arc, P.wedge, P.arrow, P.fig, P.group, P.text(x, y, str, {c, size, anchor, font}), P.grid,
 P.raw`, and `P.R()` (seeded random). Options: `c` colour, `w` width, `fill`,
 `hatch` (hachure colour), `dash`, `gap`. Keep hand labels at 25px or more.
+
+### Drawings on every slide (`art`)
+
+Every slide, cover and CTA included, gets at least one hand-drawn figure. A text
+slide with no drawing reads as unfinished on this page. Add them with an `art`
+array on the slide; it draws on a layer behind the text, in the slide's accent
+colours:
+
+```json
+"art": [
+  { "fig": "sujud", "x": 900, "y": 1120, "size": 150, "c": "ink", "a": "green" },
+  { "fig": "moon",  "x": 160, "y": 140,  "size": 90,  "rot": -12 },
+  { "text": "you are here", "x": 820, "y": 1010, "size": 28, "c": "red", "anchor": "middle" }
+]
+```
+
+`x, y` is the figure's centre on the 1080×1350 slide, `size` its box in px
+(80-220 works; under 80 the lines get lost on a phone). `c` is the line colour,
+`a`/`b` the fill accents; colour names are the same as for `color` above.
+
+Figures (`P.fig(name, x, y, size, {c, a, b, rot, flip})` inside custom diagrams,
+same names in `art`). People are faceless stick figures, never animals:
+
+- people and positions: `person`, `walk`, `dua` (raised palms), `sit`, `lie`,
+  `sujud`, `ruku`, `hands`
+- things: `phone`, `phoneBuzz`, `quran` (on a stand), `book`, `mat`, `bed`,
+  `clock`, `alarm`, `hourglass`, `cup`, `tasbih`, `door`, `lantern`, `envelope`,
+  `lock`, `scale`
+- places and sky: `mosque`, `grave`, `moon`, `sun`, `sunrise`, `stars`,
+  `sparkle`, `sparkles`, `cloud`, `mountain`
+- heart and growth: `heart`, `seedling`, `tree`, `drop`, `footsteps`, `speech`
+- marks: `arrowCurve`, `underline`, `circleScribble`
+
+`previews/figures.png` shows all of them. Pick figures that carry meaning (a
+`phoneBuzz` beside the phone mistake, `sujud` beside the sajdah hadith), put them
+in empty space or corners, and use 1-3 per slide. The renderer fails the report
+if a figure touches text, leaves the slide, or covers a diagram label.
+
+Diagrams can use the same figures: a row of `sujud`/`ruku`/`sit` on a dashed
+baseline beats an abstract bar, and a `walk` figure on the roadmap gives the CTA
+a person to follow.
 
 Charts must not invent data. A conceptual chart (drains vs fills) is fine if the
 labels are words, not fake numbers. Real numbers need a real source.
@@ -211,6 +255,7 @@ Then **open `sheet.png` and every slide PNG and look at them.** Check:
 1. Cover readable at thumbnail size (look at the sheet): title in 1-2 glances.
 2. Title lines balanced, no single-word last line on titles.
 3. Each diagram makes sense without the text; labels don't touch lines or each other.
+   Every slide has at least one drawing, and each figure is big enough to read on a phone.
 4. One accent colour per Playbook slide; label, blob and diagram agree.
 5. Arabic shaped correctly (letters joined, harakat on top), right-aligned.
 6. ﷺ renders as the ligature, not a box.

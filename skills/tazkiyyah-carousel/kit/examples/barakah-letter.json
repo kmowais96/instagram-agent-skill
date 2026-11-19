@@ -1,0 +1,193 @@
+{
+ "style": "letter",
+ "series": "The Tazkiyyah Letter",
+ "author": "@thetazkiyyahguide",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "How to Get Barakah Back in Your Mornings",
+   "sub": "Swipe for the du'a the Prophet ﷺ made for the early morning, what he did after Fajr, and 3 small changes for tomorrow.",
+   "by": "A letter from The Tazkiyyah Guide",
+   "art": [
+    {
+     "fig": "sunrise",
+     "x": 540,
+     "y": 270,
+     "size": 230,
+     "c": "#191919",
+     "a": "#d39a22"
+    },
+    {
+     "fig": "mosque",
+     "x": 540,
+     "y": 1140,
+     "size": 150,
+     "c": "#191919",
+     "a": "#d39a22"
+    }
+   ]
+  },
+  {
+   "type": "text",
+   "blocks": [
+    "\"Why is half my day gone before it starts?\"",
+    "\"Why do I wake up already tired?\"",
+    "\"Why does nothing I start ever stick?\"",
+    "Often it isn't your schedule. It's your first hour.",
+    "",
+    "When we talk about barakah, we mean blessing from Allah.",
+    "It's when a little does a lot.",
+    "Two rak'ahs that settle your whole heart.",
+    "An hour of work that does the job of three.",
+    "A small income that somehow covers everything.",
+    "You can't buy it. You can't hustle for it.",
+    "But the Prophet ﷺ told us where to look for it:",
+    "the early morning."
+   ],
+   "art": [
+    {
+     "fig": "alarm",
+     "x": 890,
+     "y": 1150,
+     "size": 172,
+     "c": "#191919",
+     "a": "#b0532c"
+    }
+   ]
+  },
+  {
+   "type": "text",
+   "blocks": [
+    "He ﷺ made this du'a for us:",
+    {
+     "quote": {
+      "ar": "اللَّهُمَّ بَارِكْ لأُمَّتِي فِي بُكُورِهَا",
+      "ref": "Sunan Abi Dawud 2606 · Sahih (al-Albani)"
+     }
+    },
+    "\"O Allah, bless my ummah in their early mornings.\"",
+    "When he sent out an army, he sent it at the start of the day.",
+    "Sakhr, the companion who narrated it, was a merchant.",
+    "He sent his goods out at the start of the day, and he became rich and had much wealth.",
+    "",
+    "Same 24 hours as everyone else.",
+    "A different first hour.",
+    "He ﷺ asked Allah to bless that hour for you.",
+    "The only question is whether you're awake for it."
+   ],
+   "art": [
+    {
+     "fig": "sunrise",
+     "x": 880,
+     "y": 1150,
+     "size": 207,
+     "c": "#191919",
+     "a": "#d39a22"
+    }
+   ]
+  },
+  {
+   "type": "chart",
+   "title": "Two ways to spend the first hour.",
+   "diagram": {
+    "kind": "bars",
+    "h": 830,
+    "axis": 0.62,
+    "max": 2,
+    "rows": [
+     {
+      "label": "Phone before Fajr",
+      "note": "The feed gets your first thoughts.",
+      "value": -1.6,
+      "tag": "Drains"
+     },
+     {
+      "label": "Fajr on time",
+      "note": "The first thing you give, you give to Allah.",
+      "value": 2,
+      "tag": "Fills"
+     },
+     {
+      "label": "Morning adhkar",
+      "note": "You start the day remembering Him.",
+      "value": 1.6,
+      "tag": "Fills"
+     },
+     {
+      "label": "Back to sleep till late",
+      "note": "The blessed hours pass you by.",
+      "value": -1.2,
+      "tag": "Drains"
+     },
+     {
+      "label": "Sit until sunrise",
+      "note": "What the Prophet ﷺ did after Fajr.",
+      "value": 1.4,
+      "tag": "Fills"
+     },
+     {
+      "label": "Hardest task first",
+      "note": "Spend the fresh hour on what matters.",
+      "value": 1.0,
+      "tag": "Fills"
+     }
+    ]
+   },
+   "after": "If you change only one thing, keep your phone out of reach until your adhkar are done."
+  },
+  {
+   "type": "text",
+   "blocks": [
+    "## What he ﷺ did after Fajr",
+    "Jabir ibn Samurah reported that when the Prophet ﷺ prayed Fajr, he would sit in his place until the sun had risen. *(Sahih Muslim 670)*",
+    "He didn't rush into the day. He stayed with Allah first.",
+    "",
+    "So here are 3 small changes for tomorrow:",
+    "**1.** Charge your phone outside your room.",
+    "**2.** After Fajr, stay seated for your adhkar, even for ten minutes.",
+    "**3.** Do your hardest task before you open a single app.",
+    "",
+    "Don't try all three at once.",
+    "Pick one and keep it for a week.",
+    "Barakah grows in what you keep doing.",
+    "Tomorrow's Fajr is the first test."
+   ],
+   "art": [
+    {
+     "fig": "mat",
+     "x": 830,
+     "y": 1130,
+     "size": 172,
+     "c": "#191919",
+     "a": "#2f5d46"
+    },
+    {
+     "fig": "cup",
+     "x": 960,
+     "y": 1160,
+     "size": 126,
+     "c": "#191919",
+     "a": "#b0532c"
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "kicker": "Want a letter like this every week?",
+   "title": "Get barakah back in your mornings.",
+   "sub": "One sunnah, its source, and how to live it as a young Muslim today.",
+   "action": "Follow @thetazkiyyahguide",
+   "url": "Send this to someone who keeps missing Fajr.",
+   "art": [
+    {
+     "fig": "sunrise",
+     "x": 540,
+     "y": 230,
+     "size": 190,
+     "c": "#f3f0e9",
+     "a": "#d39a22"
+    }
+   ]
+  }
+ ]
+}

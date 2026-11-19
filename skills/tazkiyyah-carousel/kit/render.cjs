@@ -38,6 +38,8 @@ const md = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/(^|[^*]
 const ar = (s) => `<span class="ar" lang="ar">${esc(s).replace(/\n/g, '<br>')}</span>`;
 const dia = (d, i, extra = '') => d ? `<div class="dia" data-d='${esc(JSON.stringify(d)).replace(/'/g, '&#39;')}' data-i="${i}" ${extra}></div>` : '';
 
+const art = (s) => s.art && s.art.length ? `<svg class="art" width="1080" height="1350" viewBox="0 0 1080 1350" data-art='${esc(JSON.stringify(s.art)).replace(/'/g, '&#39;')}'></svg>` : '';
+
 /* ---------- slide templates ---------- */
 function playbook(s, i, spec) {
   const bgKey = s.bg || (s.type === 'cover' || s.type === 'cta' ? 'charcoal' : s.type === 'worksheet' ? 'cream' : 'charcoal');
@@ -113,6 +115,14 @@ function drawAll(){
     const T = theme(sec);
     sec.querySelectorAll('svg[data-blob]').forEach(svg => { const P = Doodle.make(svg, si * 1000 + 1, T); P.blob(52, 52, 49, { fill: svg.dataset.blob }); });
     sec.querySelectorAll('svg[data-box]').forEach((svg, k) => { const P = Doodle.make(svg, si * 1000 + 50 + k, T); P.rect(6, 6, 62, 62, { c: svg.dataset.box, w: 4.2, rough: 1.1 }); });
+    sec.querySelectorAll('svg.art').forEach((svg) => {
+      const P = Doodle.make(svg, si * 1000 + 700, T); const col = (c) => PBC[c] || c;
+      JSON.parse(svg.dataset.art).forEach((it) => {
+        const g = it.fig ? P.fig(it.fig, it.x, it.y, it.size || 120, { c: col(it.c), a: col(it.a), b: col(it.b), rot: it.rot, w: it.w })
+          : it.text ? P.text(it.x, it.y, it.text, { c: col(it.c) ?? T.ink, size: it.size || 28, anchor: it.anchor, rot: it.rot }) : null;
+        if (g) g.setAttribute('data-art-item', it.fig || it.text);
+      });
+    });
     sec.querySelectorAll('.dia[data-d]').forEach((box, k) => {
       const d = JSON.parse(box.dataset.d); if (d.colors) T.accent = d.colors.map(c => PBC[c] || c).concat(T.accent);
       const W = d.w || box.clientWidth, H = d.h || box.clientHeight;
@@ -144,7 +154,12 @@ function audit(){
     }
     sec.querySelectorAll('.dia').forEach(dv => { const r = dv.getBoundingClientRect(); if (dv.dataset.d && r.height < 160) out.push(tag + 'diagram squeezed to ' + Math.round(r.height) + 'px: cut copy'); });
     sec.querySelectorAll('h1,h2,p,li,.body,.sub,text').forEach(e => { const fs = parseFloat(getComputedStyle(e).fontSize); if (fs < 20 && e.textContent.trim()) out.push(tag + 'text under 20px: "' + e.textContent.trim().slice(0, 30) + '"'); });
-    const tx = [...sec.querySelectorAll('svg text')].map(t => ({ t, r: t.getBoundingClientRect() })).filter(o => o.r.width);
+    sec.querySelectorAll('[data-art-item]').forEach((g) => { const A = g.getBoundingClientRect();
+      if (A.left < S.left + 8 || A.right > S.right - 8 || A.top < S.top + 8 || A.bottom > S.bottom - 8) out.push(tag + 'art "' + g.dataset.artItem + '" runs off the slide');
+      for (const e of blocks) { const rg = document.createRange(); rg.selectNodeContents(e); const hit = [...rg.getClientRects()].some((B) => B.width && A.left < B.right + 10 && B.left < A.right + 10 && A.top < B.bottom + 6 && B.top < A.bottom + 6);
+        if (hit) { out.push(tag + 'art "' + g.dataset.artItem + '" touches the text of ' + (e.className || e.tagName) + ': move or shrink it'); break; } }
+      sec.querySelectorAll('.dia svg text').forEach((t) => { const B = t.getBoundingClientRect(); if (B.width && A.left < B.right - 2 && B.left < A.right - 2 && A.top < B.bottom - 2 && B.top < A.bottom - 2) out.push(tag + 'art "' + g.dataset.artItem + '" covers the diagram label "' + t.textContent.slice(0, 20) + '"'); }); });
+    const tx = [...sec.querySelectorAll('svg:not(.art) text')].map(t => ({ t, r: t.getBoundingClientRect() })).filter(o => o.r.width);
     for (const o of tx) if (o.r.left < S.left + 16 || o.r.right > S.right - 16 || o.r.bottom > S.bottom - 16) out.push(tag + 'diagram label off the safe area: "' + o.t.textContent.slice(0, 30) + '"');
     for (let a = 0; a < tx.length; a++) for (let b = a + 1; b < tx.length; b++) { const A = tx[a].r, B = tx[b].r;
       if (A.left < B.right - 3 && B.left < A.right - 3 && A.top < B.bottom - 3 && B.top < A.bottom - 3) out.push(tag + 'diagram labels collide: "' + tx[a].t.textContent.slice(0, 20) + '" x "' + tx[b].t.textContent.slice(0, 20) + '"'); }
@@ -166,7 +181,7 @@ async function main() {
   const tpl = { playbook, letter, notebook }[spec.style];
   if (!tpl) throw new Error('style must be playbook | letter | notebook');
   const n = spec.slides.length;
-  const body = spec.slides.map((s, i) => tpl(s, i, spec, n)).join('\n');
+  const body = spec.slides.map((s, i) => tpl(s, i, spec, n).replace(/(<section[^>]*>)/, `$1${art(s)}`)).join('\n');
   const url = (f) => 'file://' + path.join(KIT, f);
   const html = `<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="${url('fonts.css')}"><link rel="stylesheet" href="${url('carousel.css')}">
     <script src="${url('vendor/rough.js')}"></script><script src="${url('doodle.js')}"></script></head><body>${body}

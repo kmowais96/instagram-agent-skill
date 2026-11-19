@@ -18,6 +18,8 @@
      P.dot(cx,cy,d,{fill})             small solid dot
      P.grid(x,y,w,h,{step,c})          faint graph-paper patch
      P.raw(svgString)                  anything else
+     P.fig(name,x,y,size,{c,a,b,rot})   a ready-made drawing, see FIG below
+     P.group(transform, fn)            draw fn's shapes inside a transformed <g>
    Theme colours are on T (T.ink, T.accent[...], T.muted, T.bg). */
 (function () {
   const NS = 'http://www.w3.org/2000/svg';
@@ -28,7 +30,8 @@
     const rc = rough.svg(svg);
     let seed = seedBase;
     const R = rng(seedBase * 7 + 3);
-    const add = (n) => { svg.appendChild(n); return n; };
+    let target = svg;
+    const add = (n) => { target.appendChild(n); return n; };
     const base = (o = {}) => ({
       seed: ++seed, roughness: o.rough ?? 0.7, bowing: o.bow ?? 0.6,
       stroke: o.c ?? T.ink, strokeWidth: o.w ?? 3.2, disableMultiStroke: !o.multi,
@@ -93,6 +96,11 @@
           <rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#${id})" mask="url(#${id}m)"/>`);
       },
       raw: (s) => { const g = document.createElementNS(NS, 'g'); g.innerHTML = s; return add(g); },
+      group: (transform, fn) => { const g = document.createElementNS(NS, 'g'); if (transform) g.setAttribute('transform', transform); add(g); const prev = target; target = g; try { fn(); } finally { target = prev; } return g; },
+      fig: (name, x, y, size, o = {}) => {
+        const f = FIG[name]; if (!f) { (window.__warn || []).push('unknown figure ' + name); return; }
+        return P.group(`translate(${x} ${y}) rotate(${o.rot || 0}) scale(${size / 100}) translate(-50 -50)`, () => f(P, { c: o.c ?? T.ink, a: o.a ?? T.accent[0], b: o.b ?? T.accent[1] ?? T.accent[0], w: (o.w ?? 3.2) * 100 / size, flip: o.flip, label: o.label }));
+      },
     };
     return P;
   }
@@ -275,5 +283,72 @@
     if (d.dropLabel) P.text(x0 + 10 + seg * 0.8, y0 + 26, d.dropLabel, { c: good, size: 26 });
   };
 
-  window.Doodle = { make, kinds: K };
+
+  /* ---------- figure library: line drawings in a 100x100 box ----------
+     P.fig(name, x, y, size, {c, a, b, w, rot}) draws one centred at x,y.
+     c = ink, a = main accent, b = second accent. People are faceless on purpose. */
+  const FIG = {};
+  const L = (P, pts, o, ex = {}) => P.path(pts, { c: o.c, w: o.w, ...ex });
+  const C = (P, pts, o, ex = {}) => P.curve(pts, { c: o.c, w: o.w, ...ex });
+  const head = (P, x, y, o, d = 17) => P.circle(x, y, d, { c: o.c, w: o.w, fill: o.headFill });
+  FIG.person = (P, o) => { head(P, 50, 15, o); L(P, [[50, 24], [50, 60]], o); L(P, [[36, 50], [50, 33], [64, 50]], o); L(P, [[40, 92], [50, 60], [60, 92]], o); };
+  FIG.walk = (P, o) => { head(P, 52, 15, o); L(P, [[51, 24], [49, 58]], o); L(P, [[36, 46], [50, 32], [64, 42]], o); L(P, [[36, 90], [49, 58], [64, 88]], o); };
+  FIG.dua = (P, o) => { head(P, 50, 22, o); L(P, [[50, 31], [50, 64]], o); L(P, [[34, 22], [38, 40], [50, 40], [62, 40], [66, 22]], o); C(P, [[27, 12], [29, 23], [38, 24], [40, 13]], { ...o, c: o.a }); C(P, [[60, 13], [62, 24], [71, 23], [73, 12]], { ...o, c: o.a }); L(P, [[41, 94], [50, 64], [59, 94]], o); };
+  FIG.sit = (P, o) => { head(P, 46, 30, o); L(P, [[47, 39], [50, 70]], o); L(P, [[50, 70], [76, 74], [50, 82]], o); L(P, [[48, 47], [62, 62], [72, 70]], o); L(P, [[12, 84], [92, 84]], { ...o, c: o.a }); };
+  FIG.lie = (P, o) => { head(P, 16, 58, o, 15); L(P, [[24, 61], [76, 63], [92, 62]], o); L(P, [[34, 62], [52, 56], [60, 62]], o); L(P, [[6, 70], [96, 70]], { ...o, c: o.a }); };
+  FIG.sujud = (P, o) => { L(P, [[6, 86], [96, 86]], { ...o, c: o.a }); head(P, 25, 78, o, 14); C(P, [[31, 72], [44, 60], [58, 54], [68, 56]], o); L(P, [[68, 56], [72, 85], [94, 85]], o); L(P, [[36, 68], [38, 85], [46, 85]], o); };
+  FIG.ruku = (P, o) => { head(P, 20, 36, o, 15); L(P, [[27, 38], [64, 38]], o); L(P, [[64, 38], [62, 90]], o); L(P, [[64, 38], [70, 90]], o); L(P, [[36, 39], [52, 62], [62, 62]], o); };
+  FIG.hands = (P, o) => {
+    const h = [[47, 90], [36, 82], [24, 60], [17, 34], [22, 30], [29, 46], [28, 22], [34, 19], [38, 42], [40, 20], [46, 20], [47, 46]];
+    P.poly(h, { c: o.c, w: o.w }); P.poly(h.map(([x, y]) => [100 - x, y]), { c: o.c, w: o.w });
+    P.group('', () => { L(P, [[50, 6], [50, 14]], { ...o, c: o.a }); L(P, [[40, 9], [43, 15]], { ...o, c: o.a }); L(P, [[60, 9], [57, 15]], { ...o, c: o.a }); });
+  };
+  FIG.phone = (P, o) => { P.rect(30, 8, 40, 84, { c: o.c, w: o.w }); P.rect(35, 17, 30, 60, { c: o.c, w: o.w * 0.7, hatch: o.lit ? o.a : undefined }); P.dot(50, 85, 5, { fill: o.c }); };
+  FIG.phoneBuzz = (P, o) => { FIG.phone(P, o); [[20, 30, 14, 70], [12, 22, 6, 78]].forEach(([x1, y1, x2, y2]) => { C(P, [[x1, y1], [x2, 50], [x1, y2]], { ...o, c: o.a }); C(P, [[100 - x1, y1], [100 - x2, 50], [100 - x1, y2]], { ...o, c: o.a }); }); };
+  FIG.mosque = (P, o) => {
+    P.rect(16, 56, 62, 36, { c: o.c, w: o.w });
+    C(P, [[22, 56], [26, 38], [47, 26], [68, 38], [72, 56]], o, { fill: undefined });
+    L(P, [[47, 26], [47, 13]], o); P.raw(`<path d="M51,6 A7,7 0 1,0 51,20 A5.5,5.5 0 1,1 51,6 Z" fill="${o.a}"/>`);
+    P.rect(84, 28, 9, 64, { c: o.c, w: o.w }); L(P, [[82, 28], [88.5, 14], [95, 28]], o);
+    C(P, [[41, 92], [41, 76], [47, 69], [53, 76], [53, 92]], o);
+    L(P, [[4, 92], [98, 92]], o);
+  };
+  FIG.moon = (P, o) => { P.raw(`<path d="M64,14 A38,38 0 1,0 64,86 A36,36 0 0,1 64,14 Z" fill="${o.a}" stroke="${o.c}" stroke-width="${o.w * 0.8}" stroke-linejoin="round"/>`); FIG.sparkle(P, { ...o, at: [78, 30, 10] }); };
+  FIG.sun = (P, o) => { P.circle(50, 50, 40, { c: o.c, w: o.w, fill: o.a }); for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; L(P, [[50 + Math.cos(a) * 30, 50 + Math.sin(a) * 30], [50 + Math.cos(a) * 44, 50 + Math.sin(a) * 44]], o); } };
+  FIG.sunrise = (P, o) => { P.arc(50, 74, 26, 180, 360, { c: o.c, w: o.w }); P.wedge(50, 74, 24, 180, 360, { fill: o.a }); for (let i = 1; i < 6; i++) { const a = Math.PI + i * Math.PI / 6; L(P, [[50 + Math.cos(a) * 33, 74 + Math.sin(a) * 33], [50 + Math.cos(a) * 46, 74 + Math.sin(a) * 46]], o); } L(P, [[4, 75], [96, 75]], o); };
+  FIG.sparkle = (P, o) => { const [x, y, r] = o.at || [50, 50, 40]; P.raw(`<path d="M${x},${y - r} Q${x + r * 0.15},${y - r * 0.15} ${x + r},${y} Q${x + r * 0.15},${y + r * 0.15} ${x},${y + r} Q${x - r * 0.15},${y + r * 0.15} ${x - r},${y} Q${x - r * 0.15},${y - r * 0.15} ${x},${y - r} Z" fill="${o.b ?? o.a}"/>`); };
+  FIG.sparkles = (P, o) => { FIG.sparkle(P, { ...o, at: [30, 35, 22] }); FIG.sparkle(P, { ...o, at: [70, 62, 14] }); FIG.sparkle(P, { ...o, at: [62, 22, 8] }); };
+  FIG.quran = (P, o) => {
+    L(P, [[24, 94], [76, 58]], o); L(P, [[76, 94], [24, 58]], o);
+    P.poly([[14, 60], [50, 66], [50, 26], [14, 20]], { c: o.c, w: o.w, fill: o.paper ?? 'none' }); P.poly([[86, 60], [50, 66], [50, 26], [86, 20]], { c: o.c, w: o.w, fill: o.paper ?? 'none' });
+    for (let i = 0; i < 4; i++) { L(P, [[20, 30 + i * 7], [44, 34 + i * 7]], { ...o, w: o.w * 0.5, c: o.a }); L(P, [[56, 34 + i * 7], [80, 30 + i * 7]], { ...o, w: o.w * 0.5, c: o.a }); }
+  };
+  FIG.book = (P, o) => { P.rect(26, 14, 48, 72, { c: o.c, w: o.w, fill: o.a }); L(P, [[32, 14], [32, 86]], o); P.rect(40, 30, 26, 12, { c: o.c, w: o.w * 0.6 }); };
+  FIG.mat = (P, o) => { P.rect(26, 8, 48, 80, { c: o.c, w: o.w, fill: o.a }); C(P, [[33, 42], [36, 26], [50, 16], [64, 26], [67, 42], [67, 78], [33, 78], [33, 42]], { ...o, c: o.c }); for (let x = 28; x <= 72; x += 6) L(P, [[x, 88], [x, 96]], { ...o, w: o.w * 0.6 }); };
+  FIG.bed = (P, o) => { L(P, [[8, 36], [8, 86]], o); L(P, [[92, 58], [92, 86]], o); P.rect(8, 58, 84, 16, { c: o.c, w: o.w }); P.circle(22, 52, 18, { c: o.c, w: o.w }); P.rect(36, 50, 56, 10, { c: o.c, w: o.w, hatch: o.a, gap: 5 }); };
+  FIG.clock = (P, o) => { P.circle(50, 52, 76, { c: o.c, w: o.w }); [[50, 18, 50, 24], [50, 80, 50, 86], [12, 52, 18, 52], [82, 52, 88, 52]].forEach(([a, b, c, d]) => L(P, [[a, b], [c, d]], o)); L(P, [[50, 52], [50, 30]], { ...o, c: o.a }); L(P, [[50, 52], [66, 60]], o); P.dot(50, 52, 6, { fill: o.c }); };
+  FIG.alarm = (P, o) => { FIG.clock(P, o); P.arc(22, 20, 12, 180, 300, { c: o.c, w: o.w }); P.arc(78, 20, 12, 240, 360, { c: o.c, w: o.w }); L(P, [[28, 86], [22, 95]], o); L(P, [[72, 86], [78, 95]], o); };
+  FIG.hourglass = (P, o) => { L(P, [[24, 8], [76, 8]], o); L(P, [[24, 92], [76, 92]], o); P.poly([[30, 10], [70, 10], [52, 50], [70, 90], [30, 90], [48, 50]], { c: o.c, w: o.w }); P.poly([[36, 88], [64, 88], [50, 70]], { c: 'none', fill: o.a }); P.poly([[40, 22], [60, 22], [50, 40]], { c: 'none', fill: o.a }); };
+  FIG.heart = (P, o) => P.heart(50, 50, 44, { c: o.c, w: o.w, fill: o.fill, hatch: o.hatch });
+  FIG.seedling = (P, o) => { P.poly([[30, 66], [70, 66], [64, 94], [36, 94]], { c: o.c, w: o.w, fill: o.b }); C(P, [[50, 66], [49, 48], [51, 30]], { ...o, c: o.c }); P.poly([[50, 44], [36, 34], [24, 38], [34, 48]], { c: o.c, w: o.w * 0.8, fill: o.a }); P.poly([[51, 34], [64, 20], [78, 22], [68, 34]], { c: o.c, w: o.w * 0.8, fill: o.a }); };
+  FIG.tree = (P, o) => { L(P, [[48, 94], [48, 56]], o); L(P, [[52, 94], [52, 56]], o); P.blob(50, 40, 32, { fill: o.a, c: o.c, w: o.w }); L(P, [[10, 94], [90, 94]], o); };
+  FIG.lantern = (P, o) => { P.circle(50, 8, 10, { c: o.c, w: o.w }); L(P, [[36, 22], [64, 22]], o); P.poly([[34, 26], [66, 26], [72, 46], [66, 80], [34, 80], [28, 46]], { c: o.c, w: o.w }); P.blob(50, 54, 9, { fill: o.a }); L(P, [[40, 86], [60, 86]], o); L(P, [[46, 80], [46, 86]], o); L(P, [[54, 80], [54, 86]], o); };
+  FIG.cup = (P, o) => { P.poly([[22, 40], [72, 40], [66, 88], [28, 88]], { c: o.c, w: o.w, fill: o.a }); P.arc(74, 58, 12, 270, 450, { c: o.c, w: o.w }); [36, 48, 60].forEach((x) => C(P, [[x, 32], [x - 4, 22], [x + 3, 14], [x, 6]], { ...o, w: o.w * 0.7 })); };
+  FIG.drop = (P, o) => { P.raw(`<path d="M50,8 C62,30 78,46 78,64 A28,28 0 0,1 22,64 C22,46 38,30 50,8 Z" fill="${o.a}" stroke="${o.c}" stroke-width="${o.w}" stroke-linejoin="round"/>`); C(P, [[36, 64], [38, 74], [46, 80]], { ...o, c: '#fff', w: o.w * 0.9 }); };
+  FIG.tasbih = (P, o) => { for (let i = 0; i < 18; i++) { const a = i / 18 * Math.PI * 2 - Math.PI / 2; P.dot(50 + Math.cos(a) * 30, 42 + Math.sin(a) * 30, 9, { fill: i % 6 ? o.a : o.b }); } L(P, [[50, 72], [50, 84]], o); P.poly([[44, 84], [56, 84], [60, 98], [40, 98]], { c: o.c, w: o.w * 0.7, fill: o.b }); };
+  FIG.door = (P, o) => { P.rect(28, 8, 44, 86, { c: o.c, w: o.w }); P.dot(64, 54, 7, { fill: o.a }); L(P, [[10, 94], [90, 94]], o); };
+  FIG.grave = (P, o) => { C(P, [[30, 86], [30, 34], [50, 18], [70, 34], [70, 86]], o); L(P, [[10, 86], [90, 86]], o); for (let x = 14; x < 90; x += 9) L(P, [[x, 86], [x + 3, 78]], { ...o, c: o.a, w: o.w * 0.7 }); };
+  FIG.speech = (P, o) => { P.poly([[10, 14], [90, 14], [90, 64], [44, 64], [28, 84], [30, 64], [10, 64]], { c: o.c, w: o.w, fill: o.fill }); [30, 50, 70].forEach((x) => P.dot(x, 39, 8, { fill: o.a })); };
+  FIG.cloud = (P, o) => { C(P, [[16, 70], [10, 56], [22, 44], [34, 46], [40, 30], [60, 28], [68, 42], [82, 42], [90, 58], [82, 70], [16, 70]], o); };
+  FIG.mountain = (P, o) => { P.poly([[4, 90], [38, 26], [56, 56], [70, 40], [96, 90]], { c: o.c, w: o.w, hatch: o.a, gap: 8 }); };
+  FIG.footsteps = (P, o) => { [[30, 78, -10], [54, 56, 10], [40, 30, -10], [64, 10, 10]].forEach(([x, y, r]) => P.group(`rotate(${r} ${x} ${y + 10})`, () => { P.raw(`<ellipse cx="${x}" cy="${y + 12}" rx="7" ry="11" fill="${o.a}"/>`); P.dot(x, y - 3, 6, { fill: o.a }); })); };
+  FIG.lock = (P, o) => { P.arc(50, 42, 18, 180, 360, { c: o.c, w: o.w }); L(P, [[32, 42], [32, 50]], o); L(P, [[68, 42], [68, 50]], o); P.rect(24, 50, 52, 40, { c: o.c, w: o.w, fill: o.a }); P.dot(50, 68, 9, { fill: o.c }); };
+  FIG.scale = (P, o) => { L(P, [[50, 10], [50, 88]], o); L(P, [[30, 92], [70, 92]], o); L(P, [[14, 26], [86, 18]], o); L(P, [[14, 26], [6, 52]], o); L(P, [[14, 26], [22, 52]], o); L(P, [[86, 18], [78, 44]], o); L(P, [[86, 18], [94, 44]], o); P.arc(14, 52, 9, 0, 180, { c: o.c, w: o.w }); P.arc(86, 44, 9, 0, 180, { c: o.c, w: o.w }); };
+  FIG.arrowCurve = (P, o) => { C(P, [[10, 80], [30, 40], [66, 22], [88, 30]], { ...o, c: o.a }); L(P, [[76, 18], [88, 30], [74, 38]], { ...o, c: o.a }); };
+  FIG.underline = (P, o) => { C(P, [[4, 50], [30, 46], [60, 52], [96, 46]], { ...o, c: o.a }); C(P, [[12, 60], [50, 56], [88, 60]], { ...o, c: o.a, w: o.w * 0.7 }); };
+  FIG.circleScribble = (P, o) => { const pts = []; for (let i = 0; i <= 26; i++) { const t = i / 24 * Math.PI * 2; pts.push([50 + Math.cos(t) * (46 - i * 0.2), 50 + Math.sin(t) * (34 - i * 0.2)]); } C(P, pts, { ...o, c: o.a }); };
+  FIG.stars = (P, o) => { [[20, 30, 8], [70, 20, 12], [50, 70, 7], [86, 64, 5], [30, 82, 5]].forEach((s) => FIG.sparkle(P, { ...o, at: s })); };
+  FIG.envelope = (P, o) => { P.rect(10, 24, 80, 54, { c: o.c, w: o.w, fill: o.fill }); L(P, [[10, 26], [50, 56], [90, 26]], o); };
+
+  window.Doodle = { make, kinds: K, figures: FIG };
 })();

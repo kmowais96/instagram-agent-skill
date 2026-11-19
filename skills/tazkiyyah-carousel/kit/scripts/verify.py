@@ -42,8 +42,11 @@ def hadith(col, num):
     if col == "muslim":
         print("!! Muslim numbers here are sequential, not Abd al-Baqi. Use: verify.py find muslim \"<phrase>\"\n")
     e = get("hadith-api", f"eng-{col}/{num}")
-    a = get("hadith-api", f"ara-{col}/{num}")
-    show(e["metadata"]["name"], e["hadiths"][0], a["hadiths"][0]["text"], "; ".join(e["metadata"].get("section", {}).values()))
+    try:
+        ar = get("hadith-api", f"ara-{col}/{num}")["hadiths"][0]["text"]
+    except Exception:
+        ar = "(Arabic not in this dataset for this number: copy it from sunnah.com or hadithunlocked.com)"
+    show(e["metadata"]["name"], e["hadiths"][0], ar, "; ".join(e["metadata"].get("section", {}).values()))
 
 def find(col, phrase):
     cache = os.path.join(tempfile.gettempdir(), f"hadith-eng-{col}.json")

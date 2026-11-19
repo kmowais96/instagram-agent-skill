@@ -1,0 +1,281 @@
+{
+ "style": "playbook",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "The Khushu' Playbook",
+   "title": "Mistakes that quietly steal\nyour focus in salah.",
+   "sub": "Most of mine were small. That's why I missed them.",
+   "closer": "Save this before your next prayer.",
+   "label": "magenta",
+   "roadmap": [
+    {
+     "label": "rushing\nthrough it",
+     "color": "pink"
+    },
+    {
+     "label": "eyes\nwandering",
+     "color": "magenta"
+    },
+    {
+     "label": "praying\nhungry",
+     "color": "red"
+    },
+    {
+     "label": "phone\nin sight",
+     "color": "blue"
+    },
+    {
+     "label": "words you\ndon't understand",
+     "color": "yellow"
+    }
+   ],
+   "art": [
+    {
+     "fig": "mat",
+     "x": 935,
+     "y": 80,
+     "size": 96,
+     "c": "#f7f4ee",
+     "a": "magenta"
+    },
+    {
+     "fig": "stars",
+     "x": 140,
+     "y": 80,
+     "size": 96,
+     "a": "pink",
+     "b": "pink"
+    },
+    {
+     "fig": "lantern",
+     "x": 940,
+     "y": 1150,
+     "size": 130,
+     "c": "#f7f4ee",
+     "a": "yellow"
+    }
+   ]
+  },
+  {
+   "type": "item",
+   "n": 1,
+   "bg": "plum",
+   "color": "pink",
+   "title": "Rushing through it.",
+   "diagram": {
+    "kind": "custom",
+    "h": 520,
+    "js": "const figs=[['dua','takbir'],['ruku','ruku\\''],['person','stand'],['sujud','sujud'],['sit','sit']]; const n=figs.length; P.line(10,H*0.5+105,W-10,H*0.5+105,{c:'#ef6f9a',w:2.4,dash:[12,10]}); figs.forEach(([f,l],i)=>{const x=W*(0.09+0.82*i/(n-1)), y=H*0.5; P.fig(f,x,y,200,{c:'#f7f4ee',a:'#ef6f9a'}); P.text(x,y+150,l,{c:'#f7f4ee',size:29});}); P.text(W/2,H*0.12,'pause in every position',{c:'#ef6f9a',size:31});"
+   },
+   "body": "A man prayed fast, and the Prophet ﷺ told him three times: **\"Go back and pray, for you have not prayed.\"**",
+   "src": "SAHIH AL-BUKHARI 757",
+   "art": [
+    {
+     "fig": "alarm",
+     "x": 150,
+     "y": 150,
+     "size": 143,
+     "c": "#f7f4ee",
+     "a": "pink"
+    }
+   ]
+  },
+  {
+   "type": "item",
+   "n": 2,
+   "bg": "charcoal",
+   "color": "magenta",
+   "title": "Letting your eyes wander.",
+   "diagram": {
+    "kind": "custom",
+    "h": 430,
+    "js": "const cx=W/2, cy=H*0.5; const L=[['door','the door',-0.95,-0.6],['walk','people',0.95,-0.6],['clock','a clock',-0.9,0.6],['phoneBuzz','your phone',0.92,0.6]]; L.forEach(([f,t,dx,dy])=>{const x=cx+dx*W*0.37, y=cy+dy*H*0.6; P.arrow(cx+Math.sign(dx)*95,cy+Math.sign(dy)*40,x-dx*90,y-dy*40,{c:T.muted,w:2.6,dash:[10,9]}); P.fig(f,x,y-30,115,{c:T.muted,a:'#c650c8'}); P.text(x,y+52,t,{c:T.muted,size:26});}); P.fig('mat',cx,cy,150,{c:'#f7f4ee',a:'#c650c8'}); P.text(cx,cy+100,'keep your eyes here',{c:'#c650c8',size:27});"
+   },
+   "body": "Looking around in prayer is **a theft Shaytan takes from your salah.** Keep your eyes where your forehead will go.",
+   "src": "SAHIH AL-BUKHARI 751"
+  },
+  {
+   "type": "item",
+   "n": 3,
+   "bg": "brown",
+   "color": "red",
+   "title": "Praying while starving.",
+   "diagram": {
+    "kind": "gauge",
+    "value": 0.86,
+    "zoneFrom": 0.7,
+    "h": 380,
+    "color": "#f4c430",
+    "caption": "your mind is on the food"
+   },
+   "body": "No prayer when food is served, or while holding in the call of nature. **Eat or go first, then pray within its time.**",
+   "src": "SAHIH MUSLIM 560",
+   "art": [
+    {
+     "fig": "cup",
+     "x": 170,
+     "y": 640,
+     "size": 182,
+     "c": "#f7f4ee",
+     "a": "orange"
+    },
+    {
+     "fig": "clock",
+     "x": 915,
+     "y": 640,
+     "size": 182,
+     "c": "#f7f4ee",
+     "a": "yellow"
+    }
+   ]
+  },
+  {
+   "type": "item",
+   "n": 4,
+   "bg": "cream",
+   "color": "blue",
+   "title": "Keeping your phone in sight.",
+   "diagram": {
+    "kind": "dips",
+    "h": 420,
+    "yLabel": "focus",
+    "xLabel": "one prayer",
+    "goodLabel": "phone in another room",
+    "badLabel": "phone face up",
+    "dipLabel": "buzz",
+    "color": "#2451b8",
+    "good": "#21a14d"
+   },
+   "body": "One buzz and your mind leaves the prayer. Silent mode isn't enough. **Put it out of sight.**",
+   "foot": "Leave it in another room.",
+   "art": [
+    {
+     "fig": "phoneBuzz",
+     "x": 160,
+     "y": 160,
+     "size": 156,
+     "c": "#1d1d1f",
+     "a": "blue"
+    },
+    {
+     "fig": "door",
+     "x": 925,
+     "y": 160,
+     "size": 143,
+     "c": "#1d1d1f",
+     "a": "green"
+    }
+   ]
+  },
+  {
+   "type": "item",
+   "n": 5,
+   "bg": "green",
+   "color": "yellow",
+   "title": "Saying words you don't understand.",
+   "diagram": {
+    "kind": "custom",
+    "h": 440,
+    "js": "const y=H*0.45; P.fig('speech',W*0.2,y,190,{c:'#f7f4ee',a:'#f7f4ee'}); P.text(W*0.2,y+130,'said it',{c:'#f7f4ee',size:28}); P.arrow(W*0.36,y,W*0.56,y,{c:'#f4c430',w:3.2}); P.fig('quran',W*0.75,y-10,220,{c:'#f7f4ee',a:'#f4c430'}); P.fig('sparkles',W*0.93,y-120,80,{a:'#f4c430',b:'#f4c430'}); P.text(W*0.75,y+130,'understood it',{c:'#f4c430',size:28});"
+   },
+   "body": "You recite al-Fatihah at least 17 times a day. **Learn its meaning once, and every rak'ah changes.**",
+   "art": [
+    {
+     "fig": "quran",
+     "x": 930,
+     "y": 160,
+     "size": 169,
+     "c": "#f7f4ee",
+     "a": "yellow"
+    },
+    {
+     "fig": "speech",
+     "x": 150,
+     "y": 160,
+     "size": 143,
+     "c": "#f7f4ee",
+     "a": "yellow"
+    }
+   ]
+  },
+  {
+   "type": "worksheet",
+   "kicker": "Worksheet",
+   "title": "Which ones steal your salah?",
+   "items": [
+    {
+     "text": "I rush the positions",
+     "color": "pink"
+    },
+    {
+     "text": "My eyes wander around the room",
+     "color": "magenta"
+    },
+    {
+     "text": "I pray hungry or holding it in",
+     "color": "red"
+    },
+    {
+     "text": "My phone is within sight",
+     "color": "blue"
+    },
+    {
+     "text": "I don't know what al-Fatihah means",
+     "color": "yellow"
+    }
+   ],
+   "closer": "Pick one. Fix it at your next prayer.",
+   "art": [
+    {
+     "fig": "mat",
+     "x": 190,
+     "y": 1080,
+     "size": 169,
+     "c": "#1d1d1f",
+     "a": "magenta"
+    },
+    {
+     "fig": "tasbih",
+     "x": 900,
+     "y": 1080,
+     "size": 169,
+     "c": "#1d1d1f",
+     "a": "pink",
+     "b": "blue"
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "kicker": "One fix a week",
+   "title": "Five prayers.\nOne fix at a time.",
+   "sub": "Follow for weekly tazkiyyah playbooks: small fixes for the heart, each with its source.",
+   "diagram": {
+    "kind": "custom",
+    "h": 300,
+    "js": "const CS=['#ef6f9a','#c650c8','#e5483b','#2451b8','#f4c430']; const a=[]; const yy=x=>H*0.6+Math.sin(x/W*Math.PI*2+0.6)*24; for(let x=0;x<=W;x+=24){a.push([x,yy(x)])} P.curve(a,{c:'#f7f4ee',w:5}); CS.forEach((c,i)=>{const x=W*0.12+i*W*0.14, y=yy(x)+4; P.blob(x,y,26,{fill:c}); P.text(x,y+1,String(i+1),{c:i==4?'#1d1d1f':'#fff',size:26,font:T.sans,weight:600});}); P.fig('walk',W*0.8,yy(W*0.8)-62,120,{c:'#f7f4ee'}); P.fig('mosque',W*0.93,yy(W*0.93)-70,140,{c:'#f7f4ee',a:'#f4c430'});"
+   },
+   "closer": "Send this to the friend you pray with.",
+   "art": [
+    {
+     "fig": "sujud",
+     "x": 190,
+     "y": 170,
+     "size": 195,
+     "c": "#f7f4ee",
+     "a": "magenta"
+    },
+    {
+     "fig": "moon",
+     "x": 935,
+     "y": 170,
+     "size": 143,
+     "c": "#f7f4ee",
+     "a": "yellow",
+     "b": "yellow"
+    }
+   ]
+  }
+ ]
+}
