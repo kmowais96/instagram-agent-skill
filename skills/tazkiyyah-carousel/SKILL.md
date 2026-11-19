@@ -215,7 +215,7 @@ Then **open `sheet.png` and every slide PNG and look at them.** Check:
 5. Arabic shaped correctly (letters joined, harakat on top), right-aligned.
 6. ﷺ renders as the ligature, not a box.
 7. Every reference on a slide matches your source table, character for character.
-8. Nothing important in the outer 120px of the cover (profile grid crop).
+8. Cover kicker, title and subtitle clear of the outer 120px (profile grid crop).
 9. The CTA has one action and the right handle.
 10. Read every slide aloud once: anything you'd skip, cut.
 
