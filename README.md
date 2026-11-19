@@ -324,6 +324,7 @@ skills/ig-human/detect.py          the five-check panel
 skills/ig-viral/swipe.py           outlier ranking and formula classification
 skills/ig-profile/rubric.json      the 100-point profile score
 templates/voice.md                 your voice profile. Fill this in first.
+templates/reel-rules.md            standing rules for your Reels, read by /ig-reel.
 ```
 
 ## Credit

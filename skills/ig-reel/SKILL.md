@@ -39,6 +39,11 @@ python3 beats.py script.txt --target 30     # timed beat sheet before you shoot
 4. If `~/.claude/instagram/swipe.md` exists, read it. `/ig-viral` writes that
    file, and it is the user's own evidence about which formulas are working in
    their niche right now. It beats the defaults in this file.
+5. If `~/.claude/instagram/reel-rules.md` exists, read it. Those are the
+   account's standing rules (what is never said aloud, how loud the music
+   sits, what the end card says). They override the defaults here.
+   `templates/reel-rules.md` is a filled example.
+6. Write the outcome sentence (check 1 below) before choosing a hook.
 
 ## The shape
 
@@ -57,6 +62,30 @@ Length: 15 to 45 seconds is the working range. Reels run to 3 minutes and
 almost nobody should use it. Under 7 seconds the loop counts inflate and
 nothing else does.
 
+## The four checks
+
+A Reel is not ready to shoot until it passes all four. Show how it passes each
+one in the REEL READY block.
+
+**1. Outcome before anything.** Finish this sentence in one line: "By the end
+of this Reel, the viewer will know, feel, or be able to do ___." If you cannot,
+there is no Reel yet. A topic is not an outcome: "morning routines" is a topic,
+"a 20-minute night routine so you don't wake up already behind" is an outcome.
+
+**2. Curiosity loops.** The hook makes someone stop; it does not make them stay.
+Plant specific unanswered questions through the script: open a loop, pay it
+off, open the next one, until the last beat. Note in the script where each loop
+opens and where it pays off. This is the check that matters most.
+
+**3. Every line earns its place.** Go through the script line by line and ask:
+does this add information, emotion, curiosity, or proof? If not, cut it.
+Retention is as much what you remove as what you add.
+
+**4. Change what the brain is processing.** Every few seconds, switch the
+content type: a number, an example, a screenshot, a question, a moment of
+story. Never the same kind of thing for long. `beats.py` flags any beat over
+4 seconds; also flag three beats in a row of the same type.
+
 ## The loop
 
 **1. Pick three hooks, not one.** Run the idea through `hooks.json`, choose
@@ -67,7 +96,8 @@ on-screen line for each. Different formulas, not three rewrites of one.
 `hookscore.py`. Show the user the ranking. If the top one is under 50, you do
 not have the hook yet and no amount of editing fixes that.
 
-**3. Write the script** on the winning hook. Plain spoken language, the way the
+**3. Write the script** on the winning hook, with the loops from check 2
+marked. Plain spoken language, the way the
 user actually talks. Contractions. Short lines. No sentence they would have to
 rehearse.
 
@@ -75,15 +105,20 @@ rehearse.
 a hook past 3 seconds, any beat over 4 seconds, a run of beats with nothing
 concrete in them, no loop. Re-run until it is clean.
 
-**5. Humanize it.** Run the script through `/ig-human` before showing it. A
+**5. Cut pass.** Run check 3 on every line and cut what fails. Then check 4.
+
+**6. Humanize it.** Run the script through `/ig-human` before showing it. A
 written-sounding line is obvious the moment someone says it out loud.
 
-**6. Print the block.** The script in a fenced block, the on-screen text as a
+**7. Print the block.** The script in a fenced block, the on-screen text as a
 separate list with timings, and then:
 
 ```
 REEL READY
 hook:       #3 Nobody Tells You, scored 86 STRONG
+outcome:    viewer can send a proposal in 20 minutes with one template
+loops:      3 opened, 3 paid off (0:01 -> 0:09, 0:09 -> 0:18, 0:18 -> 0:27)
+cuts:       2 lines removed (no info, emotion, curiosity or proof)
 length:     28.4s across 9 beats at 165 wpm
 on-screen:  6 cards
 humanizer:  4 artefacts stripped, human score 81 PASS
@@ -92,7 +127,7 @@ caption:    run /ig-caption next
 Reply "yes" to log it, or tell me what to change.
 ```
 
-**7. Never publish.** This skill produces a script. The user shoots it and
+**8. Never publish.** This skill produces a script. The user shoots it and
 posts it. On "yes", append to `~/.claude/instagram/log.md` with the date, the
 hook formula used and the first line, so `/ig-audit` has a history later.
 
