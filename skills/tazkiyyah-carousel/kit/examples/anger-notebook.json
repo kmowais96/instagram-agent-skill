@@ -1,0 +1,119 @@
+{
+ "style": "notebook",
+ "series": "Tazkiyyah Notes",
+ "author": "@thetazkiyyahguide",
+ "date": "auto",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "islamic ways to\ncool your anger",
+   "sub": "From the Qur'an & Sunnah, for the moment\nbefore you say something you regret",
+   "diagram": {
+    "kind": "custom",
+    "h": 520,
+    "js": "P.grid(W*0.12,0,W*0.76,H,{step:26}); const c=['#c0532d','#2f5c9e','#1f7a72']; const x=W*0.5, top=H*0.08, bot=H*0.78; P.rect(x-28,top,56,bot-top,{c:T.ink,w:4}); P.circle(x,bot+40,110,{c:T.ink,w:4,fill:c[0]}); P.rect(x-16,top+60,32,bot-top-50,{c:'none',hatch:c[0],gap:7}); [['boiling',0.12],['heated',0.38],['calm',0.7]].forEach(([t,f],i)=>{const y=top+(bot-top)*f; P.line(x+28,y,x+52,y,{c:T.ink,w:3}); P.text(x+70,y,t,{c:[c[0],'#d39a22',c[2]][i],size:30,anchor:'start'});}); P.arrow(x-90,top+40,x-90,bot-20,{c:c[2],w:3.4}); P.text(x-110,(top+bot)/2,'bring it\\ndown',{c:c[2],size:28,anchor:'end'}); P.fig('speech',W*0.16,H*0.25,120,{c:T.ink,a:'#c0532d'}); P.fig('drop',W*0.86,H*0.68,90,{c:T.ink,a:'#2f5c9e'});"
+   },
+   "closer": "(save it for the next argument)"
+  },
+  {
+   "type": "item",
+   "title": "#1 seek refuge out loud",
+   "sub": "Anger has a source. Name it.",
+   "quote": {
+    "ref": "Bukhari\n3282",
+    "text": "If he says: 'I seek refuge with Allah from Satan,' then all his anger will go away."
+   },
+   "body": [
+    "Two men were insulting each other, one red in the face. The Prophet ﷺ said he knew a word that would calm him.",
+    "Say it out loud: *a'udhu billahi min ash-shaytan ir-rajim.*"
+   ],
+   "diagram": {
+    "kind": "custom",
+    "h": 380,
+    "js": "const c=['#c0532d','#2f5c9e','#1f7a72']; const x0=50,y0=H-40,top=30; P.grid(x0,top-10,W-x0,y0-top+10,{step:26}); P.arrow(x0,y0,x0,top,{c:T.ink,w:2.6}); P.arrow(x0,y0,W-10,y0,{c:T.ink,w:2.6}); P.text(x0+12,top+4,'anger',{c:T.ink,size:25,anchor:'start'}); const k=W*0.5; const a=[]; for(let x=x0+10;x<=k;x+=20){a.push([x,y0-20-Math.pow((x-x0)/(k-x0),1.6)*(y0-top-60)+Math.sin(x/14)*5])} P.curve(a,{c:c[0],w:4.5}); const b=[[k,top+40]]; for(let x=k+20;x<=W-40;x+=20){b.push([x,top+40+(y0-top-70)*(1-Math.exp(-(x-k)/90))])} P.curve(b,{c:c[2],w:4.5}); P.dot(k,top+40,18,{fill:c[1]}); P.text(k+16,top+6,\"a'udhu billah\",{c:c[1],size:27,anchor:'start'}); P.text(W-40,y0-80,'it settles',{c:c[2],size:26,anchor:'end'});"
+   },
+   "art": [
+    {
+     "fig": "hands",
+     "x": 128,
+     "y": 560,
+     "size": 80,
+     "c": "#111",
+     "a": "#1f7a72"
+    }
+   ]
+  },
+  {
+   "type": "item",
+   "layout": "split",
+   "title": "#2 change your position",
+   "sub": "Your body can cool what your mind can't.",
+   "quote": {
+    "ref": "Abu Dawud\n4782\n(sahih)",
+    "text": "When one of you becomes angry while standing, he should sit down. If the anger leaves him, well and good; otherwise he should lie down."
+   },
+   "body": [
+    "Standing? Sit. Still angry? Lie down.",
+    "Get lower, and the heat comes down with you."
+   ],
+   "diagram": {
+    "kind": "custom",
+    "js": "P.grid(0,0,W,H,{step:26}); const c=['#c0532d','#d39a22','#1f7a72']; const L=[['person','standing',0.9],['sit','sitting',0.55],['lie','lying down',0.22]]; const bw=W*0.24; P.text(W/2,H*0.05,'how hot it gets',{c:T.ink,size:27}); L.forEach(([f,t,v],i)=>{const x=W*0.1+i*(bw+W*0.06), base=H*0.6, h=H*0.42*v; P.rect(x,base-h,bw,h,{c:c[i],hatch:c[i],w:3,gap:9}); P.fig(f,x+bw/2,base+80,bw*1.05,{c:T.ink,a:c[i]}); P.text(x+bw/2,base+160,t,{c:c[i],size:25});}); P.line(W*0.04,H*0.6,W*0.96,H*0.6,{c:T.ink,w:3});"
+   }
+  },
+  {
+   "type": "item",
+   "title": "#3 redefine strong",
+   "sub": "Winning the argument isn't strength.",
+   "quote": {
+    "ref": "Bukhari\n6114",
+    "text": "The strong is not the one who overcomes the people by his strength, but the strong is the one who controls himself while in anger."
+   },
+   "body": [
+    "The gym builds your body. This hadith shows where real strength is tested: the second you want to snap back."
+   ],
+   "diagram": {
+    "kind": "custom",
+    "h": 400,
+    "js": "P.grid(W*0.08,0,W*0.84,H,{step:26}); const c=['#c0532d','#2f5c9e','#1f7a72']; const base=H*0.8; P.line(W*0.15,base,W*0.85,base,{c:T.ink,w:3}); P.rect(W*0.25,base-H*0.25,W*0.16,H*0.25,{c:c[0],w:3.4,hatch:c[0],gap:10}); P.rect(W*0.57,base-H*0.62,W*0.16,H*0.62,{c:c[2],w:3.6,hatch:c[2],gap:10}); P.text(W*0.33,base+40,'beats people',{c:c[0],size:27}); P.text(W*0.65,base+40,'controls himself',{c:c[2],size:27}); P.text(W*0.65,base-H*0.62-32,'strong',{c:c[2],size:30}); P.fig('walk',W*0.2,H*0.55,110,{c:'#c0532d',a:'#c0532d'}); P.fig('heart',W*0.82,H*0.45,90,{c:'#1f7a72'});"
+   },
+   "art": [
+    {
+     "fig": "scale",
+     "x": 128,
+     "y": 560,
+     "size": 80,
+     "c": "#111"
+    }
+   ]
+  },
+  {
+   "type": "cta",
+   "title": "which one will you\nuse next time?",
+   "sub": "Save it for the moment you need it.\nFollow for one heart fix a week, from the Qur'an & Sunnah.",
+   "diagram": {
+    "kind": "custom",
+    "h": 420,
+    "js": "P.grid(W*0.25,0,W*0.5,H,{step:26}); P.heart(W/2,H*0.48,130,{c:'#1f7a72',w:5}); P.text(W/2+180,H*0.18,'calm',{c:'#1f7a72',size:30});"
+   },
+   "art": [
+    {
+     "fig": "hands",
+     "x": 230,
+     "y": 1050,
+     "size": 130,
+     "c": "#111",
+     "a": "#1f7a72"
+    },
+    {
+     "fig": "sparkles",
+     "x": 860,
+     "y": 1050,
+     "size": 110,
+     "a": "#d39a22",
+     "b": "#d39a22"
+    }
+   ]
+  }
+ ]
+}

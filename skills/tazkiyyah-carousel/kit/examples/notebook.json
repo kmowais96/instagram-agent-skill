@@ -1,0 +1,89 @@
+{
+ "style": "notebook",
+ "series": "Tazkiyyah Notes",
+ "author": "@thetazkiyyahguide",
+ "date": "auto",
+ "slides": [
+  {
+   "type": "cover",
+   "title": "islamic ways to\nsoften a hard heart",
+   "sub": "From the Qur'an & Sunnah, for the days\nyour heart feels like stone",
+   "diagram": {
+    "kind": "custom",
+    "h": 520,
+    "js": "P.grid(40,10,W-80,H-20,{step:26}); const c=['#c0532d','#2f5c9e','#1f7a72']; const xs=[W*0.2,W*0.5,W*0.8], y=H*0.46; P.heart(xs[0],y,95,{c:T.ink,w:4,hatch:'#555',gap:7}); P.heart(xs[1],y,95,{c:T.ink,w:4}); P.poly([[xs[1]-90,y-40],[xs[1]-20,y-75],[xs[1]-8,y+20],[xs[1]-55,y+40]],{c:'none',hatch:'#555',gap:7}); P.heart(xs[2],y,95,{c:c[2],w:4.5}); P.blob(xs[2],y-6,16,{fill:c[0]}); P.arrow(xs[0]+110,y,xs[1]-110,y,{c:T.ink,w:3}); P.arrow(xs[1]+110,y,xs[2]-110,y,{c:T.ink,w:3}); P.text(xs[0],y+150,'rusted',{c:'#555',size:30}); P.text(xs[1],y+150,'polishing',{c:c[1],size:30}); P.text(xs[2],y+150,'soft',{c:c[2],size:30});"
+   },
+   "closer": "(save this for the hard days)"
+  },
+  {
+   "type": "item",
+   "title": "#1 polish the rust",
+   "sub": "Every sin leaves a mark. Every return wipes it.",
+   "quote": {
+    "ref": "Qur'an\n83:14",
+    "text": "No! Rather, the stain has covered their hearts of that which they were earning."
+   },
+   "body": [
+    "The Prophet ﷺ explained it: a sin leaves a black spot on the heart. Stop, seek forgiveness and repent, and it is polished clean. Keep going back, and it spreads. *(Tirmidhi 3334, hasan)*",
+    "Don't let the spots pile up. Say astaghfirullah tonight, and mean it."
+   ],
+   "diagram": {
+    "kind": "sawtooth",
+    "h": 400,
+    "grid": true,
+    "steps": 4,
+    "color": "#c0532d",
+    "good": "#1f7a72",
+    "yLabel": "spots on the heart",
+    "peakLabel": "a sin",
+    "dropLabel": "istighfar",
+    "badLine": "it keeps spreading"
+   }
+  },
+  {
+   "type": "item",
+   "layout": "split",
+   "title": "#2 remember Him often",
+   "sub": "A restless heart is usually a heart that forgot.",
+   "quote": {
+    "ref": "Qur'an\n13:28",
+    "text": "Unquestionably, by the remembrance of Allah hearts are assured."
+   },
+   "body": [
+    "Not once a day. Often: on the bus, between tasks, before you sleep.",
+    "Tie one dhikr to something you already do, like *SubhanAllah* every time you unlock your phone."
+   ],
+   "diagram": {
+    "kind": "custom",
+    "js": "P.grid(0,0,W,H,{step:26}); const c=['#c0532d','#2f5c9e','#1f7a72']; P.text(W/2,40,'without dhikr',{c:c[0],size:28}); const a=[]; let x=20; while(x<W-20){a.push([x,H*0.2+(P.R()-0.5)*90]); x+=10+P.R()*22;} P.curve(a,{c:c[0],w:3.6}); P.text(W/2,H*0.34,'restless',{c:c[0],size:27}); P.text(W/2,H*0.43,'vs',{c:'#666',size:24,font:T.sans}); P.text(W/2,H*0.52,'with dhikr',{c:c[2],size:28}); const r=Math.min(W*0.8,H*0.34); P.circle(W/2,H*0.76,r,{c:c[2],w:4}); const b=[]; for(let t=-0.4;t<=0.4;t+=0.04){b.push([W/2+t*r, H*0.76+Math.sin(t*12)*8])} P.curve(b,{c:c[1],w:4}); P.text(W/2,H*0.97,'assured',{c:c[2],size:27});"
+   }
+  },
+  {
+   "type": "item",
+   "title": "#3 visit the graves",
+   "sub": "Nothing shrinks the dunya back to size faster.",
+   "quote": {
+    "ref": "Sahih Muslim\n976",
+    "text": "...so visit the graves, for that makes you mindful of death."
+   },
+   "body": [
+    "Go with a friend. Give salam to the people there and make du'a for them. Then look at your worries again. Most of them shrink back to their real size."
+   ],
+   "diagram": {
+    "kind": "custom",
+    "h": 420,
+    "js": "P.grid(30,0,W-60,H,{step:26}); const c=['#c0532d','#2f5c9e','#1f7a72']; const y=H*0.48; P.circle(W*0.2,y,210,{c:c[0],w:4,hatch:c[0],gap:12}); P.circle(W*0.37,y+40,70,{c:c[2],w:4}); P.text(W*0.2,y-150,'dunya',{c:c[0],size:28}); P.text(W*0.39,y-40,'akhirah',{c:c[2],size:26}); P.text(W*0.28,H*0.95,'before the visit',{c:'#444',size:27}); P.arrow(W*0.47,y,W*0.56,y,{c:T.ink,w:3}); P.circle(W*0.67,y+40,70,{c:c[0],w:4,hatch:c[0],gap:12}); P.circle(W*0.82,y,230,{c:c[2],w:4.5}); P.text(W*0.65,y-40,'dunya',{c:c[0],size:26}); P.text(W*0.83,y,'akhirah',{c:c[2],size:30}); P.text(W*0.76,H*0.95,'after',{c:'#444',size:27});"
+   }
+  },
+  {
+   "type": "cta",
+   "title": "which one will you\ntry this week?",
+   "sub": "Tell me in the comments.\nFollow for one heart fix a week, from the Qur'an & Sunnah.",
+   "diagram": {
+    "kind": "custom",
+    "h": 460,
+    "js": "P.grid(W*0.25,0,W*0.5,H,{step:26}); P.heart(W/2,H*0.48,140,{c:'#1f7a72',w:5}); P.blob(W/2,H*0.44,22,{fill:'#c0532d'}); P.text(W/2+190,H*0.2,'soft',{c:'#1f7a72',size:30});"
+   }
+  }
+ ]
+}
