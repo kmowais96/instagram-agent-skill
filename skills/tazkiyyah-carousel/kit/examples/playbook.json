@@ -1,0 +1,164 @@
+{
+ "style": "playbook",
+ "brand": {
+  "handle": "@thetazkiyyahguide"
+ },
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "The Comeback Playbook",
+   "title": "Mistakes we make when we\ntry to come back to Allah.",
+   "sub": "I've made every one of these.",
+   "closer": "Save this for the next time you restart.",
+   "roadmap": [
+    {
+     "label": "waiting to\nfeel ready",
+     "color": "red"
+    },
+    {
+     "label": "changing\neverything",
+     "color": "green"
+    },
+    {
+     "label": "phone gets\nthe first minutes",
+     "color": "orange"
+    },
+    {
+     "label": "comparing to\ntheir highlights",
+     "color": "blue"
+    },
+    {
+     "label": "hiding after\na slip",
+     "color": "yellow"
+    }
+   ]
+  },
+  {
+   "type": "item",
+   "n": 1,
+   "bg": "brown",
+   "color": "red",
+   "title": "Waiting to feel ready.",
+   "diagram": {
+    "kind": "custom",
+    "h": 400,
+    "js": "const y0=H*0.5; const a=[]; for(let x=40;x<=W-40;x+=26){a.push([x, y0-60+Math.sin(x/55)*95*Math.sin(x/170)])} P.curve(a,{c:T.muted,w:3.2,dash:[14,11]}); P.text(W-50,y0-195,'how ready you feel',{c:T.muted,size:26,anchor:'end'}); const b=[]; for(let x=40;x<=W-40;x+=40){b.push([x,y0+130-(x-40)/(W-80)*150])} P.curve(b,{c:'#f4c430',w:5}); P.text(60,y0+180,'what showing up builds',{c:'#f4c430',size:26,anchor:'start'});"
+   },
+   "body": "Feelings follow actions. Pray first. The feeling usually shows up after, not before. **Don't wait for the mood.**",
+   "foot": "Start before you feel it."
+  },
+  {
+   "type": "item",
+   "n": 2,
+   "bg": "red",
+   "color": "green",
+   "title": "Changing everything at once.",
+   "diagram": {
+    "kind": "stack",
+    "count": 5,
+    "h": 420,
+    "color": "#f4c430",
+    "top": "+1 new habit",
+    "side": "too much to carry"
+   },
+   "body": "Ten new habits on Monday, none by Friday. **The most beloved deed to Allah is the most constant, even if it is small.**",
+   "src": "SAHIH AL-BUKHARI 6464"
+  },
+  {
+   "type": "item",
+   "n": 3,
+   "bg": "navy",
+   "color": "orange",
+   "title": "Giving your phone the first minutes.",
+   "diagram": {
+    "kind": "clock",
+    "fraction": 0.17,
+    "h": 430,
+    "caption": "the first 10 minutes"
+   },
+   "body": "Whatever gets your first minutes sets the tone of your day. Give them to Fajr and your morning adhkar, not the feed."
+  },
+  {
+   "type": "item",
+   "n": 4,
+   "bg": "cream",
+   "color": "blue",
+   "title": "Comparing yourself to their highlights.",
+   "diagram": {
+    "kind": "compare",
+    "h": 380,
+    "box": 150,
+    "left": {
+     "count": 3,
+     "inner": "post",
+     "caption": "their best minute"
+    },
+    "right": {
+     "inner": "you",
+     "caption": "your whole day"
+    }
+   },
+   "body": "You see their best minute and judge your whole day by it. Look at your own deeds, not their feed."
+  },
+  {
+   "type": "item",
+   "n": 5,
+   "bg": "green",
+   "color": "yellow",
+   "title": "Hiding from Allah after a slip.",
+   "diagram": {
+    "kind": "sawtooth",
+    "h": 420,
+    "steps": 3,
+    "color": "#e5483b",
+    "good": "#f4f1ea",
+    "peakLabel": "slip",
+    "dropLabel": "turn back",
+    "yLabel": "distance",
+    "badLine": "staying away"
+   },
+   "body": "A slip is not the end of your comeback. Staying away is. **Do not despair of the mercy of Allah.**",
+   "src": "QUR'AN 39:53"
+  },
+  {
+   "type": "worksheet",
+   "kicker": "Worksheet",
+   "title": "Which ones are you making?",
+   "items": [
+    {
+     "text": "I'm waiting until I feel ready",
+     "color": "red"
+    },
+    {
+     "text": "I'm trying to change everything at once",
+     "color": "green"
+    },
+    {
+     "text": "My phone gets my first minutes",
+     "color": "orange"
+    },
+    {
+     "text": "I compare my deen to their posts",
+     "color": "blue"
+    },
+    {
+     "text": "I hide from Allah after I slip",
+     "color": "yellow"
+    }
+   ],
+   "closer": "Pick one. Fix it this week."
+  },
+  {
+   "type": "cta",
+   "kicker": "One fix a week",
+   "title": "Save this.\nThen pick one.",
+   "sub": "Follow for a weekly tazkiyyah playbook: one fix for the heart, with its source.",
+   "diagram": {
+    "kind": "custom",
+    "h": 300,
+    "js": "const cs=['#e5483b','#21a14d','#f26b29','#2451b8','#f4c430']; const a=[]; for(let x=0;x<=W;x+=24){a.push([x,H*0.55+Math.sin(x/W*Math.PI*2+0.6)*24])} P.curve(a,{c:'#f7f4ee',w:5}); cs.forEach((c,i)=>{const x=W*0.18+i*W*0.16; P.blob(x,H*0.55+Math.sin(x/W*Math.PI*2+0.6)*24+4,26,{fill:c}); P.text(x,H*0.55+Math.sin(x/W*Math.PI*2+0.6)*24+5,String(i+1),{c:i==4?'#1d1d1f':'#fff',size:26});});"
+   },
+   "closer": "Send it to the friend who's trying to come back."
+  }
+ ]
+}
